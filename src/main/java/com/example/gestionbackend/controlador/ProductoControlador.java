@@ -42,13 +42,21 @@ public class ProductoControlador {
         return ResponseEntity.ok(producto);
     }
 
+    @GetMapping("/productos/list/{tipo}")
+    public ResponseEntity< List<Producto>> obtenerProductoPorIdTipo(@PathVariable int tipo){
+       List<Producto> producto = repositorio.findAllByIdTipo(tipo);
+        return ResponseEntity.ok(producto);
+    }
+
+
+
     @PutMapping("/productos/{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable Long id, @RequestBody Producto detallesProducto){
         Producto producto = repositorio.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("No existe el producto con el ID: " + id));
         producto.setNombre(detallesProducto.getNombre());
         producto.setDescripcion(detallesProducto.getDescripcion());
-        producto.setId_tipo(detallesProducto.getId_tipo());
+        producto.setIdTipo(detallesProducto.getIdTipo());
         producto.setPrecio(detallesProducto.getPrecio());
 
         Producto productoActualizado= repositorio.save(producto);

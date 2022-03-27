@@ -16,21 +16,25 @@ public class Producto {
     private String descripcion;
     @Column(name = "precio",length = 60, nullable = false)
     private int precio;
-    @Column(name = "id_tipo",length = 60, nullable = false) //unique=true --> es para emails
-    private int id_tipo;
+    @Column(name = "id_tipo" ,length = 60, nullable = false) //unique=true --> es para emails
+    private int idTipo;
+
+    private String imagen;
 
     public Producto(){
 
     }
 
-    public Producto(Long id, String nombre, String descripcion, int precio, int id_tipo) {
+    public Producto(Long id, String nombre, String descripcion, int precio, int idTipo, String imagen) {
         super();
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.id_tipo = id_tipo;
+        this.idTipo = idTipo;
+        this.imagen = imagen;
     }
+
 
     public Long getId() {
         return id;
@@ -64,11 +68,21 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getId_tipo() {
-        return id_tipo;
+    public int getIdTipo() {
+        return idTipo;
     }
 
-    public void setId_tipo(int id_tipo) {
-        this.id_tipo = id_tipo;
+    public void setIdTipo(int idTipo) {
+        this.idTipo = idTipo;
     }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+
 }
